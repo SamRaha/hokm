@@ -15,16 +15,17 @@ const Container = styled.div`
 
 const Button = styled.button`
     margin: 10px;
+    height: 50px;
 `;
 
 const CardContainer = styled.div`
     padding: 10px;
 `;
 
+const suits = ["hearts", "diamonds", "clubs", "spades"];
+const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const App = () => {
     const deck = useMemo(() => {
-        const suits = ["hearts", "diamonds", "clubs", "spades"];
-        const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
         let initialDeck = [];
         suits.forEach((suit) => {
             values.forEach((value) => {
@@ -60,13 +61,31 @@ const App = () => {
     return (
         <Container>
             <Button onClick={handleShuffleClick}>Shuffle Deck</Button>
-            {cards.map((card) => (
+            {/* {cards.map((card) => (
                 <CardContainer>
                     <PlayingCard key={`${card.suit}-${card.value}`} value={card.value} suit={card.suit}>{`${card.value} of ${card.suit}`}</PlayingCard>
                 </CardContainer>
-            ))}
+            ))} */}
         </Container>
     );
 };
 
 export default App;
+
+// 2 player game
+// first to 7 wins (maximum 13 rounds can be played)
+// there are 3 phases
+// phase 1 only happens once per game
+// phases 2 and 3 happen each round
+// phase 1:
+// first you need to declare who the hakem (ruler) is.
+// this happens by giving each player a card 1 by 1 until someone gets an ace
+// the person with an ace is the hakem (ruler) and then the cards are returned to the deck and then the cards are shuffled again
+
+//phase 2:
+// each player gets 5 cards from the deck. method would be .pop() to get the last cards.
+// players look at their 5 cards, but they don't reveal them to each other.
+// the hokm (ruling suit) is then chosen by the hakem (ruler). then the hakem can drop 2 or 3 cards (if they drop 3, then they get to see the last 2 cards in the next bit)
+// the players start picking up from the deck, starting with the hakem first. this happens with the first player picking up one card,
+
+// first phase
